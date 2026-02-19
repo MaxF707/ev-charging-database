@@ -43,6 +43,7 @@ td{padding:7px 10px;vertical-align:middle;font-size:12px}
 .vt-phev{background:#1a2a0d;color:#7ee787}
 .plug-badge{font-size:11px;color:#d2a8ff}
 .no-data{color:#484f58;font-style:italic}
+.emerg-cell{color:#8b949e;max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:pointer}
 #table-wrap{overflow:auto;max-height:calc(100vh - 200px)}
 .detail-panel{position:fixed;right:0;top:0;width:400px;height:100vh;background:#161b22;border-left:1px solid #30363d;padding:20px;overflow-y:auto;transform:translateX(100%);transition:transform .2s;z-index:100}
 .detail-panel.open{transform:translateX(0)}
@@ -124,6 +125,7 @@ td{padding:7px 10px;vertical-align:middle;font-size:12px}
   <th onclick="sortBy('dc')" data-col="dc">DC kW</th>
   <th onclick="sortBy('plug')" data-col="plug">Plug Type</th>
   <th onclick="sortBy('auto')" data-col="auto">Autocharge</th>
+  <th onclick="sortBy('emerg')" data-col="emerg">Emergency Release</th>
 </tr>
 </thead>
 <tbody id="tbody"></tbody>
@@ -242,6 +244,7 @@ function render() {
       <td>${nd(d.dc,' kW')}</td>
       <td>${plugBadge(d.plug)}</td>
       <td><span class="auto-badge ${autoClass(d.auto)}">${autoLabel(d.auto)}</span></td>
+      <td class="emerg-cell" title="${d.emerg||''}">${d.emerg ? (d.emerg.length > 55 ? d.emerg.slice(0,55)+'…' : d.emerg) : '<span class=\"no-data\">–</span>'}</td>
     </tr>
   `).join('');
 
