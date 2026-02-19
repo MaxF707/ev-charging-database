@@ -1,6 +1,6 @@
 # ⚡ EV Charging Database — EU + US (2024/2025)
 
-A comprehensive dataset of **2,642 electric vehicle models** (BEV + PHEV) available in Europe and the United States, with structured charging specifications for use in AI agents and interactive exploration.
+A comprehensive dataset of **2,179 electric vehicle models** (BEV + PHEV) available in Europe and the United States, with structured charging specifications for use in AI agents and interactive exploration.
 
 ---
 
@@ -45,7 +45,7 @@ No installation, no server, no dependencies. The entire dataset is embedded in t
 
 ```
 ┌────────────────────────────────────────────────────────────────────────────────┐
-│ ⚡ EV Charging Database             EU+US 2024/25          [2642 vehicles]     │
+│ ⚡ EV Charging Database             EU+US 2024/25          [2179 vehicles]     │
 ├──────────┬──────┬────────┬────────┬───────┬──────────┬─────┬─────┬────────────┤
 │ Region   │ Type │ Brand  │ Model  │  Year │ Battery  │  AC │  DC │ Autocharge │
 ├──────────┼──────┼────────┼────────┼───────┼──────────┼─────┼─────┼────────────┤
@@ -95,8 +95,8 @@ User question: Does the Hyundai Ioniq 6 support Autocharge at Ionity stations?
 
 | Field | Coverage |
 |-------|----------|
-| Vehicles | 2,642 models (1,843 EU, 745 US, 54 in both) |
-| BEV / PHEV | 1,326 BEV / 1,316 PHEV |
+| Vehicles | 2,179 models (1,571 EU, 221 US, 387 EU+US) |
+| BEV / PHEV | 985 BEV / 1,194 PHEV |
 | Brands | 93 manufacturers |
 | Battery Capacity | ~85% BEV / ~38% PHEV |
 | AC Charging Rate | ~78% BEV / ~36% PHEV |
