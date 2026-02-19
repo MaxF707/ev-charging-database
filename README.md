@@ -1,6 +1,6 @@
 # ⚡ EV Charging Database — EU + US (2024/2025)
 
-A comprehensive dataset of **1,326 electric vehicle models** available in Europe and the United States, with structured charging specifications for use in AI agents and interactive exploration.
+A comprehensive dataset of **2,642 electric vehicle models** (BEV + PHEV) available in Europe and the United States, with structured charging specifications for use in AI agents and interactive exploration.
 
 ---
 
@@ -36,7 +36,7 @@ No installation, no server, no dependencies. The entire dataset is embedded in t
 ## 🔍 Dashboard Features
 
 - **Search** by brand or model name
-- **Filter** by Region (EU / US / both), Brand, Plug Type, Autocharge support, and whether battery data is available
+- **Filter** by Region (EU / US / both), Vehicle Type (BEV / PHEV), Brand, Plug Type, Autocharge support, and whether battery data is available
 - **Sort** any column by clicking the header
 - **Click any row** to open a detail panel showing all fields including full source references
 - Live stats bar updates as you filter
@@ -44,15 +44,15 @@ No installation, no server, no dependencies. The entire dataset is embedded in t
 **Screenshot overview:**
 
 ```
-┌─────────────────────────────────────────────────────────────────────────┐
-│ ⚡ EV Charging Database          EU+US 2024/25         [1326 vehicles]  │
-├──────────┬────────┬────────┬───────┬──────────┬─────┬─────┬────────────┤
-│ Region   │ Brand  │ Model  │  Year │ Battery  │  AC │  DC │ Autocharge │
-├──────────┼────────┼────────┼───────┼──────────┼─────┼─────┼────────────┤
-│ 🇪🇺 EU   │ Tesla  │Model Y │ 2024  │  75 kWh  │ 11  │ 250 │ ✅ Yes     │
-│ 🇺🇸 US   │ Audi   │ Q4     │ 2024  │  82 kWh  │ 11  │ 135 │ ✅ Yes     │
-│ 🌍 EU+US │ Porsche│ Taycan │ 2024  │  93 kWh  │ 22  │ 270 │ ✅ Yes     │
-└──────────┴────────┴────────┴───────┴──────────┴─────┴─────┴────────────┘
+┌────────────────────────────────────────────────────────────────────────────────┐
+│ ⚡ EV Charging Database             EU+US 2024/25          [2642 vehicles]     │
+├──────────┬──────┬────────┬────────┬───────┬──────────┬─────┬─────┬────────────┤
+│ Region   │ Type │ Brand  │ Model  │  Year │ Battery  │  AC │  DC │ Autocharge │
+├──────────┼──────┼────────┼────────┼───────┼──────────┼─────┼─────┼────────────┤
+│ 🇪🇺 EU   │ BEV  │ Tesla  │Model Y │ 2024  │  75 kWh  │ 11  │ 250 │ ✅ Yes     │
+│ 🇺🇸 US   │ PHEV │ BMW    │ X5 45e │ 2024  │  24 kWh  │  7  │  –  │ ❌ No      │
+│ 🌍 EU+US │ BEV  │ Porsche│ Taycan │ 2024  │  93 kWh  │ 22  │ 270 │ ✅ Yes     │
+└──────────┴──────┴────────┴────────┴───────┴──────────┴─────┴─────┴────────────┘
 ```
 
 ---
@@ -63,18 +63,19 @@ The file `ev_charging_prompt_block.txt` is formatted for direct use as context i
 
 **Format per entry:**
 ```
-Region|Model|Year|Battery(kWh)|AC_kW|DC_kW|PlugType|Autocharge:Y/N/P/?|Emergency:…
+Region|Type|Model|Year|Battery(kWh)|AC_kW|DC_kW|PlugType|Autocharge:Y/N/P/?|Emergency:…
 ```
 
 **Example entries:**
 ```
-EU|Model Y|2024|75kWh|AC:11kW|DC:250kW|NACS (Berlin Giga) / Type 2 mit Adapter|Autocharge:Y|Emergency:Trunk: orange cable or touchscreen service
-US|Q4 40 e-tron|2024|82kWh|AC:11kW|DC:125kW|CCS1 + J1772|Autocharge:Y|Emergency:Trunk: lift floor, remove panel driver side, pull yellow loop
+EU|BEV|Model Y|2024|75kWh|AC:11kW|DC:250kW|NACS (Berlin Giga) / Type 2 mit Adapter|Autocharge:Y|Emergency:Trunk: orange cable or touchscreen service
+US|PHEV|Q5 55 TFSI e|2024|14kWh|AC:7kW|DC:-|CCS1 + J1772|Autocharge:N|Emergency:See owner's manual
 ```
 
 **Autocharge key:** `Y` = yes / `N` = no / `P` = partial / `?` = unknown
+**Type key:** `BEV` = Battery Electric Vehicle / `PHEV` = Plug-in Hybrid Electric Vehicle
 
-**Token estimate:** ~48,000 tokens (fits in a 128k context window alongside other instructions)
+**Token estimate:** ~124,000 tokens — fits in a 200k context window alongside other instructions
 
 **Sample prompt usage:**
 ```
@@ -94,15 +95,17 @@ User question: Does the Hyundai Ioniq 6 support Autocharge at Ionity stations?
 
 | Field | Coverage |
 |-------|----------|
-| Vehicles | 1,326 models (581 EU, 745 US, 54 in both) |
-| Brands | 92 manufacturers |
-| Battery Capacity | ~49% |
-| AC Charging Rate | ~76% (EU) / ~47% (US) |
-| DC Fast Charging | ~74% (EU) / ~61% (US) |
+| Vehicles | 2,642 models (1,843 EU, 745 US, 54 in both) |
+| BEV / PHEV | 1,326 BEV / 1,316 PHEV |
+| Brands | 93 manufacturers |
+| Battery Capacity | ~49% BEV / ~23% PHEV |
+| AC Charging Rate | ~76% BEV EU / ~47% BEV US / ~17% PHEV |
+| DC Fast Charging | ~74% BEV EU / ~61% BEV US |
 | Plug Type | **100%** |
 | Autocharge Support | **100%** |
 | Emergency Cable Release | **100%** |
 | Source Documentation | **100%** |
+| Vehicle Type (BEV/PHEV) | **100%** |
 
 ---
 
@@ -120,6 +123,7 @@ User question: Does the Hyundai Ioniq 6 support Autocharge at Ionity stations?
 | `Autocharge Support` | Plug & Charge capability | `Ja - Plug & Charge (ab MY2023)` |
 | `Emergency Release Location` | Manual cable release location | `Trunk: orange cable behind left panel` |
 | `Region` | Market availability | `EU` / `US` / `EU + US` |
+| `Vehicle Type` | Drivetrain type | `BEV` / `PHEV` |
 | `*_Source` | Source references for each enriched field | URLs / standards / manuals |
 
 ---
@@ -127,8 +131,9 @@ User question: Does the Hyundai Ioniq 6 support Autocharge at Ionity stations?
 ## 🗂️ Data Sources
 
 **Primary scraping sources:**
-- [EV Database EU](https://ev-database.org) — European vehicle specifications
-- [AFDC / U.S. DOE](https://afdc.energy.gov) — U.S. Alternative Fuels Data Center
+- [EV Database EU](https://ev-database.org) — European BEV specifications
+- [AFDC / U.S. DOE](https://afdc.energy.gov) — U.S. Alternative Fuels Data Center (BEV + PHEV)
+- [AFDC Vehicles API](https://developer.nrel.gov/api/vehicles/v1/vehicles.json) — EU PHEV data (filtered from AFDC PHEV database)
 
 **Standards referenced:**
 - IEC 62196-2 (Type 2 / Mennekes)
@@ -147,22 +152,24 @@ User question: Does the Hyundai Ioniq 6 support Autocharge at Ionity stations?
 
 Data was collected and enriched in a multi-stage pipeline:
 
-1. **Web scraping** — BeautifulSoup scraping of listing and detail pages
+1. **Web scraping** — BeautifulSoup scraping of ev-database.org listing and detail pages (EU BEVs)
 2. **Detail page enrichment** — Parallel fetching of 1,225+ individual vehicle pages (8 worker threads)
 3. **Model-name extraction** — Regex patterns extracting battery sizes from model name strings (e.g. `"64 kWh"`)
 4. **Lookup tables** — 60+ model-specific charging specifications cross-referenced with manufacturer documentation
 5. **EU/US enrichment** — Region-specific plug types, autocharge support by manufacturer/year, emergency release by model/platform/brand hierarchy
-6. **Source documentation** — Every enriched field linked to primary sources
+6. **PHEV integration** — EU PHEVs sourced from AFDC Vehicles API (4,129 PHEVs → filtered to 1,316 EU-relevant 2020+ models)
+7. **Source documentation** — Every enriched field linked to primary sources
 
 ---
 
 ## ⚠️ Known Limitations
 
-- Battery and charging rate data incomplete for some models (~50%) — the website does not publish all specs publicly
+- Battery and charging rate data incomplete for some models — ev-database.org (~50% BEV coverage), AFDC PHEV (~23% battery, ~17% AC)
 - Emergency release locations for ~26% of models default to "see owner's manual" (no public documentation found)
 - Model year coverage: primarily 2024; some US entries include 2018–2023 where still on market
 - Autocharge support reflects MY2023+ rollout status; older model years of the same model may differ
+- PHEVs rarely support DC fast charging; DC field is mostly empty for PHEV entries
 
 ---
 
-*Dataset compiled February 2026 | Pipeline: Python / BeautifulSoup / pandas*
+*Dataset compiled February 2026 | Pipeline: Python / BeautifulSoup / pandas / AFDC API*
