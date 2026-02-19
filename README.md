@@ -98,9 +98,9 @@ User question: Does the Hyundai Ioniq 6 support Autocharge at Ionity stations?
 | Vehicles | 2,642 models (1,843 EU, 745 US, 54 in both) |
 | BEV / PHEV | 1,326 BEV / 1,316 PHEV |
 | Brands | 93 manufacturers |
-| Battery Capacity | ~49% BEV / ~23% PHEV |
-| AC Charging Rate | ~76% BEV EU / ~47% BEV US / ~17% PHEV |
-| DC Fast Charging | ~74% BEV EU / ~61% BEV US |
+| Battery Capacity | ~85% BEV / ~38% PHEV |
+| AC Charging Rate | ~78% BEV / ~36% PHEV |
+| DC Fast Charging | ~72% BEV |
 | Plug Type | **100%** |
 | Autocharge Support | **100%** |
 | Emergency Cable Release | **100%** |
